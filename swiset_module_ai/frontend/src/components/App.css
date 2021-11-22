@@ -1,0 +1,81 @@
+.site-page-header {
+  border: 1px solid rgb(235, 237, 240);
+}
+
+.form-title {
+  display: flex;
+  margin-top: 1%;
+  margin-right: 15%;
+  margin-left: 15%;
+  font-weight: bold;
+}
+
+.in-title {
+  display: flex;
+  margin-left: 2%;
+}
+
+.register-title {
+  display: flex;
+  margin-left: 2%;
+  margin-top: 3%;
+  font-weight: bold;
+}
+
+.separate {
+  margin-top: 1%;
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
+.register {
+  background-color: white;
+  margin-top: 1%;
+  margin-right: 15%;
+  margin-left: 15%;
+  border-radius: 10px;
+}
+
+.form-row {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 60px 10px 10px;
+}
+
+.form-row-two {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 33% 66%;
+  grid-template-rows: 60px 10px 10px;
+}
+
+.row-field {
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+.full-btn {
+  width: 100%;
+}
+
+.net-profit {
+  background-color: white;
+  margin-top: 1%;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-bottom: 3%;
+  border-radius: 10px;
+  align-items: center;
+  align-content: center;
+}
+
+.net-profit-lbl {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-right: 40%;
+  margin-left: 35%;
+  font-weight: bold;
+}
