@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import RoomView
+from .views import TradeView, NetProfitView
 
 urlpatterns = [
-    path('room/', RoomView.as_view()),
+    path('trade/', TradeView.as_view()),
+    path('netprofit/', NetProfitView.as_view()),
 ]

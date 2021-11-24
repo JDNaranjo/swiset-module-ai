@@ -1,23 +1,20 @@
 from django.db import models
-import string
-import random
 # Create your models here.
 
 
-def generate_unique_code():
-    length = 6
-
-    while(True):
-        code = ''.join(random.choices(string.ascii_uppercase, k=length))
-        if Room.objects.filter(code=code).count() == 0:
-            break
-
-    return code
-
-
-class Room(models.Model):
-    code = models.CharField(max_length=8, default="", unique=True)
-    host = models.CharField(max_length=50, unique=True)
-    guest_can_pause = models.BooleanField(null=False, default=False)
-    votes_to_skip = models.IntegerField(null=False, default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
+class Trade(models.Model):
+    side = models.CharField(max_length=4, default="")
+    mood = models.CharField(max_length=50, default="")
+    trade_time = models.IntegerField(null=False, default=False)
+    stop_loss_price = models.FloatField(null=False, default=False)
+    entry_price = models.FloatField(null=False, default=False)
+    close_price = models.FloatField(null=False, default=False)
+    pip_value = models.FloatField(null=False, default=False)
+    risk_percentage = models.IntegerField(null=False, default=False)
+    monetary_risk = models.IntegerField(null=False, default=False)
+    asset_name = models.CharField(max_length=100, default="")
+    market = models.CharField(max_length=50, default="")
+    type = models.CharField(max_length=4, default="")
+    automated = models.CharField(max_length=10, default="")
+    user_type = models.CharField(max_length=50, default="")
+    netProfit = models.FloatField(null=False, default=False)
