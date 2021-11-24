@@ -10,7 +10,12 @@ import joblib
 
 # Create your views here.
 
-reloadModel = joblib.load('api/randomforest.pkl')
+modelCommodities = joblib.load('api/PKLs/GBR_commodities.pkl')
+modelCryptos = joblib.load('api/PKLs/GBR_cryptos.pkl')
+modelForex = joblib.load('api/PKLs/GBR_forex.pkl')
+modelFutures = joblib.load('api/PKLs/GBR_futures.pkl')
+modelIndices = joblib.load('api/PKLs/GBR_indices.pkl')
+modelStocks = joblib.load('api/PKLs/GBR_stocks.pkl')
 
 
 class TradeView(generics.ListAPIView):
@@ -44,12 +49,29 @@ class NetProfitView(APIView):
 
             dataa = pd.DataFrame({'x': temp}).transpose()
             print(dataa)
-            value = reloadModel.predict(dataa)[0]
+
+            if temp['market'] == "Commodities":
+                print("Commodities")
+                value = modelCommodities.predict(dataa)[0]
+            elif temp['market'] == "Cryptos":
+                print("Cryptos")
+                value = modelCryptos.predict(dataa)[0]
+            elif temp['market'] == "Forex":
+                print("Forex")
+                value = modelForex.predict(dataa)[0]
+            elif temp['market'] == "Futures":
+                print("Futures")
+                value = modelFutures.predict(dataa)[0]
+            elif temp['market'] == "Indices":
+                print("Indices")
+                value = modelIndices.predict(dataa)[0]
+            elif temp['market'] == "Stocks":
+                print("Stocks")
+                value = modelStocks.predict(dataa)[0]
+
             print(value)
 
             temp['netProfit'] = value
-
-            print(temp['mood'])
 
             trade = Trade(side=temp['side'], mood=temp['mood'], trade_time=temp['trade_time'], stop_loss_price=temp['stop_loss_price'],
                           entry_price=temp['entry_price'], close_price=temp['close_price'], pip_value=temp['pip_value'],

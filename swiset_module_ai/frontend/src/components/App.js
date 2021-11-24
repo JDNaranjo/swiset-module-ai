@@ -8,16 +8,18 @@ import "./App.css"
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
+var dataGET = "";
+
 const assetNames = ['#ALIBABA', '#AMAZON', '#APPLE', '#BA', '#CISCO', '#CSCO', '#GOOGLE', '#MICROSOFT', '#NETFLIX', '#NIKE', '#OXY', '#PFIZER', '#TESLA', '#TSLA', '#TWTR', '#VISA', '6A 06-21', '6B 03-21', '6B 06-21', '6C 06-21', '6E 03-21', '6E 06-21', '6E 09-20', '6E 12-20', 'AMEX', 'AUD/CAD', 'AUD/CHF', 'AUD/JPY', 'AUD/NZD', 'AUD/USD', 'Advanced Micro Devices Inc', 'Apple', 'Apple Inc.', 'BRENT_OIL', 'BTC 03-21', 'BTC 05-21', 'BTC 06-21', 'BTCUSD', 'Boeing', 'CAD/CHF', 'CAD/JPY', 'CHF/JPY', 'CHINA_A50', 'CITIGROUP', 'CL 01-21', 'CL 02-21', 'CL 03-21', 'CL 04-21', 'CL 05-21', 'CL 06-21', 'CL 07-21', 'CL 08-21', 'CL 09-20', 'CL 10-20', 'CL 11-20', 'CL 12-20', 'COFFEE_C', 'COPPER', 'CORN', 'COTTON#2', 'CRUDEOIL', 'Cosan', 'DAX30', 'DJ30', 'DOLLAR_INDX', 'E-micro S&P 500 03-21', 'E-micro S&P 500 06-20', 'E-micro S&P 500 09-20', 'E-micro S&P 500 09-21', 'E-micro S&P 500 12-20', 'E-mini Nasdaq-100 03-21', 'E-mini Nasdaq-100 06-20', 'E-mini Nasdaq-100 09-20', 'E-mini Nasdaq-100 09-21', 'E-mini Nasdaq-100 12-20', 'E-mini Nasdaq-100 12-21', 'E-mini Russell 2000 Index 03-21', 'E-mini Russell 2000 Index 09-20', 'E-mini Russell 2000 Index 09-21', 'E-mini Russell 2000 Index 12-20', 'E-mini S&P 500 03-21', 'E-mini S&P 500 06-20'];
 
 const assetNames2 = ['E-mini S&P 500 09-20', 'E-mini S&P 500 09-21', 'E-mini S&P 500 12-20', 'E-mini S&P 500 12-21', 'EOSUSD', 'ES 03-17', 'ES 03-18', 'ES 03-19', 'ES 03-20', 'ES 06-18', 'ES 06-19', 'ES 06-21', 'ES 09-19', 'ES 12-18', 'ES 12-19', 'ETHUSD', 'EUR/AUD', 'EUR/CAD', 'EUR/CHF', 'EUR/GBP', 'EUR/HKD', 'EUR/JPY', 'EUR/NOK', 'EUR/NZD', 'EUR/PLN', 'EUR/SEK', 'EUR/TRY', 'EUR/USD', 'EUR/ZAR', 'FDAX 03-21', 'FDAX 06-21', 'FDXM 03-21', 'FDXM 06-21', 'FTSE100', 'GASOLINE', 'GBP/AUD', 'GBP/CAD', 'GBP/CHF', 'GBP/DKK', 'GBP/JPY', 'GBP/NOK', 'GBP/NZD', 'GBP/SEK', 'GBP/SGD', 'GBP/USD', 'GBP/ZAR', 'GBPJPY-Z', 'GC 02-21', 'GC 04-21', 'GC 06-21', 'GC 08-20', 'GC 08-21', 'GC 12-20', 'GER30', 'GOLD', 'Gerdau', 'HEATING_OIL', 'HK50ROLL', 'Intel Corp.', 'LTCUSD', 'M6A 06-21', 'M6E 06-21', 'M6E 09-20', 'MBT 05-21', 'MES 03-20', 'MES 06-21', 'MGC 04-21', 'MGC 06-21', 'MGC 08-21', 'MICROSOFT', 'MNQ 03-20', 'MNQ 06-21', 'MYM 03-21', 'MYM 06-21', 'MYM 12-20', 'Micro E-mini Nasdaq-100 03-21', 'Micro E-mini Nasdaq-100 06-20', 'Micro E-mini Nasdaq-100 09-20', 'Micro E-mini Nasdaq-100 09-21', 'Micro E-mini Nasdaq-100 12-20', 'Micro E-mini Russell 2000 03-21', 'Micro E-mini Russell 2000 09-20', 'Micro E-mini Russell 2000 09-21', 'Micro E-mini Russell 2000 12-20', 'NAS100', 'NASDAQ100', 'NATURAL_GAS', 'NG 02-21', 'NG 03-21', 'NG 07-21', 'NIKKEI225', 'NQ 03-16', 'NQ 03-19', 'NQ 03-20', 'NQ 06-21', 'NQ 12-19', 'NZD/CAD', 'NZD/CHF', 'NZD/JPY', 'NZD/USD', 'Netflix', 'PLATINUM', 'QM 06-21', 'QM 07-21', 'RTY 06-21', 'RUSS2000', 'RUSSELL2000', 'S&P 500', 'S&P500', 'SGD/JPY', 'SI 03-21', 'SI 05-21', 'SI 12-20', 'SILVER', 'SOYBEAN', 'SPA35', 'SPAIN35', 'Twitter', 'UB 03-21', 'UB 06-21', 'UB 09-21', 'UB 12-20', 'US30', 'US30Z0', 'US500', 'US500ROLL', 'US500Z0', 'USD/CAD', 'USD/CHF', 'USD/DKK', 'USD/HKD', 'USD/JPY', 'USD/MXN', 'USD/NOK', 'USD/SEK', 'USD/SGD', 'USD/TRY', 'USD/ZAR', 'USDCNY', 'USOIL', 'USOILRoll', 'USTEC', 'UT100Z0', 'Volatility 100 (1s) Index', 'Volatility 75 (1s) Index', 'Volatility 75 Index','WHEAT', 'WTI Crude Oil', 'XAGUSD', 'XAUEUR', 'XAUUSD', 'XBTUSD', 'YM 03-21', 'YM 06-21', 'YM 09-20', 'YM 12-20', 'ZB 06-21', 'ZB 09-21', 'ZS 03-21', 'ZS 07-21', '[DAX30]', '[DJI30]', '[NQ100]', '[SP500]', 'eBay Inc.'];
 
-
-
 export default class App extends Component {
     constructor(props){
         super(props)
-        this.state={
+
+        this.state= {
+            id: 0,
             side : "",
             mood: "",
             trade_time : "",
@@ -32,10 +34,11 @@ export default class App extends Component {
             type : "",
             automated : "",
             user_type : "",
-        }
+            netProfit: "$$$.$$$.$$$.$$$",
+        };
 
-        this.handleClick = this.handleClick.bind(this);
         this.handleClickPredict = this.handleClickPredict.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleSide = this.handleSide.bind(this);
         this.handleOperationTime = this.handleOperationTime.bind(this);
         this.handleStopLossPrice = this.handleStopLossPrice.bind(this);
@@ -72,7 +75,7 @@ export default class App extends Component {
 
     handleComissions(event) { this.setState({ monetary_risk: event.target.value }) }
 
-    handleActionName(event) { this.setState({ asset_name: event }) }
+    handleActionName(event) { this.setState({ asset_name: event }); console.console.log(event, this.state.asset_name); }
 
     handleMarket(event) { this.setState({ market: event }) }
 
@@ -84,7 +87,7 @@ export default class App extends Component {
 
     handleUserType (event){ this.setState({ user_type: event }), console.log(this.state) }
 
-    handleClickPredict() { 
+    async handleClickPredict() { 
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -106,7 +109,18 @@ export default class App extends Component {
             })
         }
 
-        fetch('/api/netprofit/', requestOptions).then( (response) => response.json() ).then( (data) => console.log(data) )
+        await fetch('/api/netprofit/', requestOptions).then( (response) => response.json() ).then( (data) => console.log(data) );
+
+        await fetch('/api/trade').then( (response) => response.json() ).then( (trades) => dataGET = trades );
+
+        var lastTrade = dataGET[dataGET.length-1];
+
+        this.setState(lastTrade);
+
+        console.log(lastTrade.netProfit);
+
+        console.log(this.state.netProfit);
+
      }
 
     render(){
@@ -171,7 +185,7 @@ export default class App extends Component {
                                                 </Select>
                                             </div>
                                             <div className="row-field">
-                                                <p className="in-title">Tiempo de operacion (Dias)</p>
+                                                <p className="in-title">Tiempo de operacion</p>
                                                 <Input
                                                 id= "trade_time"
                                                 name= "Trade Time"
@@ -395,7 +409,7 @@ export default class App extends Component {
                                         <label> Net Profit </label>
                                     </div>
                                     <hr/>
-                                    <label className="net-profit-lbl">$$$.$$$.$$$.$$$</label>
+                                    <label className="net-profit-lbl">{this.state.netProfit}</label>
                                 </div>
                             </div>
                         </Content>
